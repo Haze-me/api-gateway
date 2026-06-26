@@ -4,18 +4,34 @@ spring:
 
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins:
+              - https://emchrismobility.com
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+              - OPTIONS
+            allowed-headers:
+              - "*"
+            allow-credentials: true
+            max-age: 3600
       routes:
         - id: catalog-service
           uri: ${CATALOG_SERVICE_URL:http://localhost:8081}
           predicates:
-            - Path=/api/catalog/**
+            - Path=/api/v1/catalog/**
           filters:
             - JwtAuthFilter
 
         - id: commerce-service
           uri: ${COMMERCE_SERVICE_URL:http://localhost:8082}
           predicates:
-            - Path=/api/commerce/**
+            - Path=/api/v1/commerce/**
           filters:
             - JwtAuthFilter
 
@@ -34,9 +50,9 @@ jwt:
 
 gateway:
   public-paths:
-    - /api/catalog/products
-    - /api/catalog/categories
-    - /api/commerce/auth
+    - /api/v1/catalog/products
+    - /api/v1/catalog/categories
+    - /api/v1/commerce/auth
     - /actuator/health
   blocked-paths:
     - /actuator/env
