@@ -20,6 +20,8 @@ spring:
               - "*"
             allow-credentials: true
             max-age: 3600
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
       routes:
         - id: catalog-service
           uri: ${CATALOG_SERVICE_URL:http://localhost:8081}
