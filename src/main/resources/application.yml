@@ -44,6 +44,11 @@ spring:
           filters:
             - JwtAuthFilter
 
+        - id: django-admin-panel
+          uri: ${ADMIN_SERVICE_URL:http://localhost:8000}
+          predicates:
+            - Path=/django/admin/**
+
 server:
   port: ${SERVER_PORT:8080}
 
@@ -58,6 +63,7 @@ gateway:
     - /api/admin/auth/login/
     - /api/admin/auth/token/refresh/
     - /api/admin/auth/vendor/register/
+    - /django/admin/
     - /actuator/health
   blocked-paths:
     - /actuator/env
