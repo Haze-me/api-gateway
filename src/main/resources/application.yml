@@ -53,6 +53,9 @@ gateway:
     - /api/v1/catalog/products
     - /api/v1/catalog/categories
     - /api/v1/commerce/auth
+    - /api/admin/auth/login/
+    - /api/admin/auth/token/refresh/
+    - /api/admin/auth/vendor/register/
     - /actuator/health
   blocked-paths:
     - /actuator/env
